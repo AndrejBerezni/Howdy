@@ -1,11 +1,11 @@
+import Router from './router/Routes'
+
 function App() {
   return (
-    <>
-      <h1 className="bg-background dark:bg-backgroundDark text-text dark:text-textDark font-lato text-2xl">
-        Howdy
-      </h1>
-    </>
-  );
+    <main className="w-screen h-screen bg-background dark:bg-backgroundDark text-text dark:text-textDark">
+      <Router />
+    </main>
+  )
 }
 
-export default App;
+export default App
