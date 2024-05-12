@@ -9,4 +9,10 @@
   .floating-label {
     @apply absolute tracking-wider -top-1 left-4 origin-[0] -translate-y-6 scale-75 transform text-lg md:text-xl font-bold text-text dark:text-textDark duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:top-3 peer-focus:start-0 peer-placeholder-shown:top-3 peer-focus:-translate-y-10 peer-focus:translate-x-4 peer-focus:scale-75 rtl:peer-focus:left-auto rtl:peer-focus:translate-x-1/4;
   }
+  .primary-btn {
+    @apply rounded-3xl bg-primary hover:bg-accent hover:text-background dark:hover:text-backgroundDark duration-150 md:text-xl text-lg font-bold py-2.5 text-text dark:text-textDark font-lato uppercase tracking-wider;
+  }
+  .secondary-btn {
+    @apply rounded-3xl bg-secondary hover:bg-primary hover:text-background dark:hover:text-backgroundDark duration-150 md:text-xl text-lg font-bold py-2.5 text-text dark:text-textDark font-lato tracking-wider;
+  }
 }

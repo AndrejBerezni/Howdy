@@ -25,6 +25,9 @@ export default function LoginForm() {
           Password
         </label>
       </div>
+      <button type="submit" className="primary-btn">
+        Sign in
+      </button>
     </form>
   )
 }
