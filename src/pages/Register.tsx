@@ -1,3 +1,9 @@
+import LogoWithName from '../components/LogoWithName'
+
 export default function RegisterPage() {
-  return <h1>Register</h1>
+  return (
+    <section className="flex flex-col items-center">
+      <LogoWithName />
+    </section>
+  )
 }
