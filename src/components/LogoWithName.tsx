@@ -5,7 +5,7 @@ export default function LogoWithName() {
         src="/Logo-no-bg.png"
         className="w-[100px] h-[100px] md:w-[200px] md:h-[200px]"
       />
-      <h1 className="uppercase tracking-widest font-extrabold text-2xl md:text-4xl font-nunito text-primary">
+      <h1 className="uppercase tracking-widest font-extrabold text-2xl md:text-4xl font-nunito text-primary hover:cursor-default">
         Howdy!
       </h1>
     </div>

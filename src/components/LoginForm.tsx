@@ -1,6 +1,6 @@
 export default function LoginForm() {
   return (
-    <form className="flex flex-col gap-8 font-lato px-2 md:min-w-[400px]">
+    <form className="form-layout md:min-w-[400px]">
       <div className="relative z-0">
         <input
           type="text"
@@ -8,6 +8,7 @@ export default function LoginForm() {
           className="form-input peer"
           id="user"
           name="user"
+          required
         />
         <label htmlFor="user" className="floating-label">
           Email or nickname
@@ -20,6 +21,7 @@ export default function LoginForm() {
           className="form-input peer"
           id="password"
           name="password"
+          required
         />
         <label htmlFor="user" className="floating-label">
           Password
