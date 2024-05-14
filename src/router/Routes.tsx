@@ -1,6 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
 import LoginPage from '../pages/Login'
 import MessengerPage from '../pages/Messenger'
+import NotFoundPage from '../pages/NotFound'
 import RegisterPage from '../pages/Register'
 
 export default function Router() {
@@ -20,6 +21,7 @@ export default function Router() {
         path="/register"
         element={!isAuth ? <RegisterPage /> : <Navigate to="/" />}
       />
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   )
 }
