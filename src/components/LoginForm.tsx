@@ -1,5 +1,3 @@
-import Loader from './Loader'
-
 export default function LoginForm() {
   return (
     <form className="form-layout md:min-w-[400px]">
@@ -31,9 +29,6 @@ export default function LoginForm() {
       </div>
       <button type="submit" className="primary-btn">
         Sign in
-      </button>
-      <button className="primary-btn">
-        <Loader />
       </button>
     </form>
   )
