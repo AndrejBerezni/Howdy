@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
+import Loader from '../components/Loader'
 import { AuthContext } from '../context/AuthContext'
 import LoginPage from '../pages/Login'
 import MessengerPage from '../pages/Messenger'
@@ -7,21 +8,46 @@ import NotFoundPage from '../pages/NotFound'
 import RegisterPage from '../pages/Register'
 
 export default function Router() {
-  const { isAuth } = useContext(AuthContext)
+  //for each route, display loader while validating authentication status, and then, according to that status, display correct page
+  const { isAuth, isValidating } = useContext(AuthContext)
 
   return (
     <Routes>
       <Route
         path="/"
-        element={isAuth ? <MessengerPage /> : <Navigate to="/login" />}
+        element={
+          isValidating ? (
+            <Loader size="page" />
+          ) : isAuth ? (
+            <MessengerPage />
+          ) : (
+            <Navigate to="/login" />
+          )
+        }
       />
       <Route
         path="/login"
-        element={!isAuth ? <LoginPage /> : <Navigate to="/" />}
+        element={
+          isValidating ? (
+            <Loader size="page" />
+          ) : !isAuth ? (
+            <LoginPage />
+          ) : (
+            <Navigate to="/" />
+          )
+        }
       />
       <Route
         path="/register"
-        element={!isAuth ? <RegisterPage /> : <Navigate to="/" />}
+        element={
+          isValidating ? (
+            <Loader size="page" />
+          ) : !isAuth ? (
+            <RegisterPage />
+          ) : (
+            <Navigate to="/" />
+          )
+        }
       />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>

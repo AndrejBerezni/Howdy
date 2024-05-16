@@ -1,16 +1,18 @@
-import { createContext, useReducer, Dispatch, useEffect } from 'react'
+import { createContext, useReducer, Dispatch, useEffect, useState } from 'react'
 import { IUser } from '../compiler/interfaces'
 
 interface IAuthContext {
   isAuth: boolean
   user: IUser | null
   dispatch: Dispatch<IAuthAction>
+  isValidating: boolean
 }
 
 export const AuthContext = createContext<IAuthContext>({
   isAuth: false,
   user: null,
   dispatch: () => {},
+  isValidating: true,
 })
 
 enum AuthActionType {
@@ -45,6 +47,9 @@ export function AuthContextProvider({
 }: {
   children: React.ReactNode
 }) {
+  // isValidating is used to display Loader until we validate authentication status with server
+  const [isValidating, setIsValidating] = useState<boolean>(true)
+
   const [state, dispatch] = useReducer(authReducer, {
     isAuth: false,
     user: null,
@@ -60,6 +65,7 @@ export function AuthContextProvider({
         if (!user || !token) {
           dispatch({ type: AuthActionType.LOGOUT, payload: null })
           console.log('not authorized')
+          setIsValidating(false)
           return
         }
 
@@ -74,9 +80,11 @@ export function AuthContextProvider({
         )
         if (response.ok) {
           dispatch({ type: AuthActionType.LOGIN, payload: user })
+          setIsValidating(false)
         } else {
           dispatch({ type: AuthActionType.LOGOUT, payload: null })
           localStorage.clear()
+          setIsValidating(false)
         }
       } catch (error) {
         //[to be updated]
@@ -88,7 +96,7 @@ export function AuthContextProvider({
   }, [])
 
   return (
-    <AuthContext.Provider value={{ ...state, dispatch }}>
+    <AuthContext.Provider value={{ ...state, dispatch, isValidating }}>
       {children}
     </AuthContext.Provider>
   )

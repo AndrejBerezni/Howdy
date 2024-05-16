@@ -1,7 +1,8 @@
 import { useMemo } from 'react'
+import { clsx } from 'clsx'
 import { motion } from 'framer-motion'
 
-export default function Loader() {
+export default function Loader({ size }: { size: 'button' | 'page' }) {
   const pieces = useMemo(() => Array.from({ length: 4 }, (_, i) => i + 1), [])
   const delays = useMemo(
     () => ({
@@ -18,12 +19,17 @@ export default function Loader() {
       {pieces.map((piece) => (
         <motion.div
           key={`loader-piece-${piece}`}
-          className="h-[10px] w-[10px] bg-background dark:bg-backgroundDark"
+          className={clsx('', {
+            'bg-background dark:bg-backgroundDark': size === 'button',
+            'bg-primary': size === 'page',
+          })}
           initial={{
             x: piece % 2 === 0 ? -2 : 2,
             scale: 0.4,
             rotate: 0,
             borderRadius: 5,
+            height: size === 'button' ? '10px' : '30px',
+            width: size === 'button' ? '10px' : '30px',
           }}
           animate={{
             x: 0,
