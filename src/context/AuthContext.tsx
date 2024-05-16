@@ -1,4 +1,5 @@
 import { createContext, useReducer, Dispatch, useEffect, useState } from 'react'
+import { AuthActionType } from '../compiler/enums'
 import { IUser } from '../compiler/interfaces'
 
 interface IAuthContext {
@@ -14,11 +15,6 @@ export const AuthContext = createContext<IAuthContext>({
   dispatch: () => {},
   isValidating: true,
 })
-
-enum AuthActionType {
-  LOGIN = 'LOGIN',
-  LOGOUT = 'LOGOUT',
-}
 
 interface IAuthAction {
   type: AuthActionType
@@ -64,7 +60,6 @@ export function AuthContextProvider({
 
         if (!user || !token) {
           dispatch({ type: AuthActionType.LOGOUT, payload: null })
-          console.log('not authorized')
           setIsValidating(false)
           return
         }
@@ -87,7 +82,7 @@ export function AuthContextProvider({
           setIsValidating(false)
         }
       } catch (error) {
-        //[to be updated]
+        //[to be updated - error handling]
         console.log(error)
       }
     }

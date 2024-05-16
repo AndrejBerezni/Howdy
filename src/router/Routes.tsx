@@ -8,7 +8,7 @@ import NotFoundPage from '../pages/NotFound'
 import RegisterPage from '../pages/Register'
 
 export default function Router() {
-  //for each route, display loader while validating authentication status, and then, according to that status, display correct page
+  //for each route, display Loader while validating authentication status, and then, according to that status, display correct page
   const { isAuth, isValidating } = useContext(AuthContext)
 
   return (
