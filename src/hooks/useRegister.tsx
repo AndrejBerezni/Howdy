@@ -2,21 +2,36 @@ import { useState, useContext } from 'react'
 import { AuthActionType } from '../compiler/enums'
 import { AuthContext } from '../context/AuthContext'
 
-export default function useLogin() {
+export default function useRegister() {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
   const { dispatch } = useContext(AuthContext)
 
-  const login = async (login: string, password: string) => {
+  const register = async (
+    firstName: string,
+    lastName: string,
+    nickname: string,
+    email: string,
+    password: string
+  ) => {
     try {
       setIsLoading(true)
       setError(null)
 
-      const response = await fetch('http://localhost:3000/api/v1/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ login, password }),
-      })
+      const response = await fetch(
+        'http://localhost:3000/api/v1/auth/register',
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            firstName,
+            lastName,
+            nickname,
+            email,
+            password,
+          }),
+        }
+      )
 
       if (!response.ok) {
         const error = await response.json()
@@ -44,5 +59,5 @@ export default function useLogin() {
     }
   }
 
-  return { login, isLoading, error }
+  return { register, isLoading, error }
 }

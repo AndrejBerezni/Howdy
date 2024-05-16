@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { BiError } from 'react-icons/bi'
+import FormError from './FormError'
 import Loader from './Loader'
 import useLogin from '../hooks/useLogin'
 
@@ -47,14 +47,9 @@ export default function LoginForm() {
         </label>
       </div>
 
-      {error && (
-        <div className="flex gap-2 items-center justify-center text-xl text-primary font-bold tracking-wider">
-          <BiError />
-          <p>{error}</p>
-        </div>
-      )}
+      {error && <FormError message={error} />}
 
-      <button type="submit" className="primary-btn">
+      <button type="submit" className="primary-btn" disabled={isLoading}>
         {isLoading ? <Loader size="button" /> : 'Sign in'}
       </button>
     </form>
