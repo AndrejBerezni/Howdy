@@ -1,7 +1,7 @@
 export interface IUser {
   uid: string
-  firstName: string
-  lastName: string
+  firstName?: string
+  lastName?: string
   nickname: string
-  email: string
+  email?: string
 }

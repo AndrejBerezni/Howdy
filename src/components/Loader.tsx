@@ -15,21 +15,26 @@ export default function Loader({ size }: { size: 'button' | 'page' }) {
   )
 
   return (
-    <div className="grid grid-cols-2 grid-rows-2 gap-1 w-fit self-center">
+    <div
+      className={clsx('grid grid-cols-2 grid-rows-2 gap-1 w-fit self-center', {
+        'gap-1': size === 'button',
+        'gap-4': size === 'page',
+      })}
+    >
       {pieces.map((piece) => (
         <motion.div
           key={`loader-piece-${piece}`}
-          className={clsx('', {
+          className={clsx('border-[1px] border-text dark:border-textDark', {
             'bg-background dark:bg-backgroundDark': size === 'button',
-            'bg-primary': size === 'page',
+            'bg-primary shadow-md': size === 'page',
           })}
           initial={{
             x: piece % 2 === 0 ? -2 : 2,
             scale: 0.4,
             rotate: 0,
             borderRadius: 5,
-            height: size === 'button' ? '10px' : '30px',
-            width: size === 'button' ? '10px' : '30px',
+            height: size === 'button' ? '10px' : '40px',
+            width: size === 'button' ? '10px' : '40px',
           }}
           animate={{
             x: 0,
