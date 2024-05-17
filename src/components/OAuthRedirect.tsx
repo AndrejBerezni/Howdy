@@ -1,8 +1,8 @@
 import { useEffect, useContext, useState } from 'react'
 import { useSearchParams, Link, useNavigate } from 'react-router-dom'
-import { AuthActionType } from '../compiler/enums'
 import Loader from './Loader'
 import LogoWithName from './LogoWithName'
+import { AuthActionType } from '../compiler/enums'
 import { AuthContext } from '../context/AuthContext'
 
 //this component extracts token and user info from search params (if info does not exists - it displays error)
@@ -16,7 +16,6 @@ export default function OAuthRedirect() {
   const [searchParams] = useSearchParams()
 
   useEffect(() => {
-    //extract info from search params
     const token = searchParams.get('token')
     const uid = searchParams.get('uid')
     const nickname = searchParams.get('nickname')
@@ -36,13 +35,11 @@ export default function OAuthRedirect() {
       email,
     }
 
-    //save info in local storage and login user
     localStorage.setItem('auth', token.replace('%20', ' '))
     localStorage.setItem('user', JSON.stringify(user))
 
     dispatch({ type: AuthActionType.LOGIN, payload: user })
 
-    //redirect to home page that now should be accessible since user is authenticated
     navigate('/')
   }, [dispatch, navigate, searchParams])
 

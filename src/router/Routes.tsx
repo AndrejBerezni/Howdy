@@ -1,11 +1,11 @@
 import { useContext } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import Loader from '../components/Loader'
+import OAuthRedirect from '../components/OAuthRedirect'
 import { AuthContext } from '../context/AuthContext'
 import LoginPage from '../pages/Login'
 import MessengerPage from '../pages/Messenger'
 import NotFoundPage from '../pages/NotFound'
-import OAuthRedirect from '../components/OAuthRedirect'
 import RegisterPage from '../pages/Register'
 
 export default function Router() {

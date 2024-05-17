@@ -9,12 +9,15 @@ export default function RegisterPage() {
       initial={{
         opacity: 0,
         x: 200,
-        filter: 'grayscale(100%) blur(10px)',
+        //Filter combined with spring transition was causing multiple errors of this type in console:
+        //'Invalid keyframe value for property filter: grayscale(-0.00542%) blur(-0.00054px)'
+        // So, I am commenting it out until I find the solution for it
+        // filter: 'grayscale(100%) blur(10px)',
       }}
       animate={{
         opacity: 1,
         x: 0,
-        filter: 'none',
+        // filter: 'none',
       }}
       transition={{
         duration: 1.5,

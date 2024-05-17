@@ -24,10 +24,7 @@ export default function Loader({ size }: { size: 'button' | 'page' }) {
       {pieces.map((piece) => (
         <motion.div
           key={`loader-piece-${piece}`}
-          className={clsx('border-[1px] border-text dark:border-textDark', {
-            'bg-background dark:bg-backgroundDark': size === 'button',
-            'bg-primary shadow-md': size === 'page',
-          })}
+          className="bg-primary shadow-md"
           initial={{
             x: piece % 2 === 0 ? -2 : 2,
             scale: 0.4,
