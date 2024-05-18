@@ -1,5 +1,7 @@
 import { useContext } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
+import Chat from '../components/Chat'
+import ChatPlaceholder from '../components/ChatPlaceholder'
 import Loader from '../components/Loader'
 import OAuthRedirect from '../components/OAuthRedirect'
 import { AuthContext } from '../context/AuthContext'
@@ -25,7 +27,10 @@ export default function Router() {
             <Navigate to="/login" />
           )
         }
-      />
+      >
+        <Route index element={<ChatPlaceholder />} />
+        <Route path="/:chatId" element={<Chat />} />
+      </Route>
       <Route
         path="/login"
         element={

@@ -48,7 +48,7 @@ export default function OAuthRedirect() {
       {error ? (
         <section className="flex flex-col items-center">
           <LogoWithName />
-          <p className="my-8 max-w-[400px] text-center font-bold text-text md:text-xl">
+          <p className="my-8 max-w-[400px] text-center font-bold text-text dark:text-textDark md:text-xl">
             {error}
           </p>
           <Link to="/login" className="primary-btn">

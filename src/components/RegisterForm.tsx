@@ -27,7 +27,7 @@ export default function RegisterForm() {
 
   return (
     <form className="form-layout" onSubmit={handleSubmit}>
-      <h2 className="-mt-4 font-semibold text-base md:text-xl text-center text-secondary">
+      <h2 className="-mt-4 font-semibold text-base md:text-xl text-center text-primary dark:text-secondary">
         Let&apos;s create your account!
       </h2>
       <div className="relative z-0">
