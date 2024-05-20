@@ -17,7 +17,7 @@ export default {
       },
       fontFamily: {
         nunito: ['Nunito', 'sans-serif'],
-        lato: ['Lato', 'sans-serif'],
+        montserrat: ['Montserrat', 'sans-serif'],
       },
     },
   },
