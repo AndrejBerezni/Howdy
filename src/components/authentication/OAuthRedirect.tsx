@@ -1,9 +1,9 @@
 import { useEffect, useContext, useState } from 'react'
 import { useSearchParams, Link, useNavigate } from 'react-router-dom'
-import Loader from './Loader'
-import LogoWithName from './LogoWithName'
-import { AuthActionType } from '../compiler/enums'
-import { AuthContext } from '../context/AuthContext'
+import { AuthActionType } from '../../compiler/enums'
+import { AuthContext } from '../../context/AuthContext'
+import Loader from '../Loader'
+import LogoWithName from '../LogoWithName'
 
 //this component extracts token and user info from search params (if info does not exists - it displays error)
 //that data is saved in local storage and login is dispatched,

@@ -13,6 +13,7 @@ export default {
         textSecondary: '#757575',
         background: '#FCF8F8',
         backgroundDark: '#140A0A',
+        statusOnline: '#0BFA14',
       },
       fontFamily: {
         nunito: ['Nunito', 'sans-serif'],

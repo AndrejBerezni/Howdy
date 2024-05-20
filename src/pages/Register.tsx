@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
+import RegisterForm from '../components/authentication/RegisterForm'
 import LogoWithName from '../components/LogoWithName'
-import RegisterForm from '../components/RegisterForm'
 
 export default function RegisterPage() {
   return (

@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router'
-import ControlPanel from '../components/ControlPanel'
+import ControlPanel from '../components/controlpanel'
 
 export default function MessengerPage() {
   return (

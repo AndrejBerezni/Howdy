@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 // import { Link } from 'react-router-dom'
-import LoginAdditionalOptions from '../components/LoginAdditionalOptions'
-import LoginForm from '../components/LoginForm'
+import LoginAdditionalOptions from '../components/authentication/LoginAdditionalOptions'
+import LoginForm from '../components/authentication/LoginForm'
 import LogoWithName from '../components/LogoWithName'
 
 export default function LoginPage() {

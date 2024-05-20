@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import FormError from './FormError'
-import Loader from './Loader'
-import useLogin from '../hooks/useLogin'
+import useLogin from '../../hooks/useLogin'
+import Loader from '../Loader'
 
 export default function LoginForm() {
   const { login, isLoading, error } = useLogin()

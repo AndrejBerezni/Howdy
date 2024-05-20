@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import FormError from './FormError'
-import Loader from './Loader'
-import useRegister from '../hooks/useRegister'
+import useRegister from '../../hooks/useRegister'
+import Loader from '../Loader'
 
 export default function RegisterForm() {
   const { register, isLoading, error } = useRegister()
