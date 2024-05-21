@@ -10,13 +10,13 @@ export default function MenuItemStatusSelect() {
   const statusIcons = useMemo(
     () => ({
       online: (
-        <FiUserCheck className="bg-statusOnline text-background dark:text-backgroundDark text-3xl border-2 rounded-lg p-1 border-statusOnline" />
+        <FiUserCheck className="bg-statusOnline text-background dark:text-backgroundDark text-2xl border-2 rounded-lg p-0 border-statusOnline" />
       ),
       offline: (
-        <FiUserX className="bg-textSecondary text-background dark:text-backgroundDark text-3xl border-2 rounded-lg p-1 border-textSecondary" />
+        <FiUserX className="bg-textSecondary text-background dark:text-backgroundDark text-2xl border-2 rounded-lg p-0 border-textSecondary" />
       ),
       busy: (
-        <FiUserMinus className="bg-accent text-background dark:text-backgroundDark text-3xl border-2 rounded-lg p-1 border-accent" />
+        <FiUserMinus className="bg-accent text-background dark:text-backgroundDark text-2xl border-2 rounded-lg p-0 border-accent" />
       ),
     }),
     []
@@ -35,8 +35,8 @@ export default function MenuItemStatusSelect() {
   }
 
   return (
-    <li className="group hover:cursor-default flex flex-col items-center sm:text-base text-xs">
-      <div className="flex items-center justify-between">
+    <li className="group hover:cursor-default flex flex-col items-center sm:text-base text-xs gap-1 w-1/5">
+      <div className="flex items-center justify-between gap-1">
         <button
           className="hover:scale-125 duration-150"
           onClick={() => changeStatus('left')}
@@ -51,30 +51,8 @@ export default function MenuItemStatusSelect() {
           <MdArrowForwardIos />
         </button>
       </div>
-      {/* <select
-        name="status"
-        onChange={(e) => handleStatusChange(e)}
-        className={clsx(
-          'bg-background dark:bg-backgroundDark border-none font-bold hover:cursor-pointer my-[1px]',
-          {
-            'text-statusOnline': status === 'online',
-            'text-accent': status === 'busy',
-            'text-textSecondary': status === 'offline',
-          }
-        )}
-      >
-        <option value="online" className="text-statusOnline">
-          online
-        </option>
-        <option value="offline" className="text-textSecondary">
-          offline
-        </option>
-        <option value="busy" className="text-accent">
-          busy
-        </option>
-      </select> */}
       <p
-        className={clsx('capitalize', {
+        className={clsx('capitalize invisible group-hover:visible', {
           'text-statusOnline': statuses[status] === 'online',
           'text-accent': statuses[status] === 'busy',
           'text-textSecondary': statuses[status] === 'offline',

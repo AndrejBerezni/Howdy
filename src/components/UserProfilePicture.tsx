@@ -9,14 +9,14 @@ export default function UserProfilePicture({
   status: Status
 }) {
   return (
-    <div className="relative lg:w-[75px] w-[50px] lg:h-[75px] h-[50px]">
+    <div className="relative lg:w-[60px] w-[50px] lg:h-[60px] h-[50px]">
       <img
         src={img ?? '/profile-img-placeholder.png'}
-        className="lg:w-[75px] w-[50px] lg:h-[75px] h-[50px] rounded-full"
+        className="lg:w-[60px] w-[50px] lg:h-[60px] h-[50px] rounded-full"
       />
       <div
         className={clsx(
-          'absolute right-0 bottom-0 lg:w-[20px] w-[15px] lg:h-[20px] h-[15px] rounded-full border-2 border-background dark:border-backgroundDark',
+          'absolute right-0 bottom-0 lg:w-[18px] w-[15px] lg:h-[18px] h-[15px] rounded-full border-2 border-background dark:border-backgroundDark',
           {
             'bg-statusOnline': status === 'online',
             'bg-accent': status === 'busy',
