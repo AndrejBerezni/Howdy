@@ -11,12 +11,15 @@ export default function useLogin() {
     try {
       setIsLoading(true)
       setError(null)
-
-      const response = await fetch('http://localhost:3000/api/v1/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ login, password }),
-      })
+      // console.log(import.meta.env.VITE_API_BASE_URL)
+      const response = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/auth/login`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ login, password }),
+        }
+      )
 
       if (!response.ok) {
         const error = await response.json()

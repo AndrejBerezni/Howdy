@@ -1,17 +1,21 @@
+import { FiUserPlus } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
-
-//creating separate component to write logic for fetching and counting friend requests here
 
 export default function MenuItemFriendRequests() {
   return (
-    <li className="flex gap-3 items-center ">
-      <Link to="/requests" className="hover:text-primary duration-150">
-        Friend requests
+    <li>
+      <Link
+        to="/requests"
+        className="hover:text-primary relative group duration-150 flex flex-col items-center group sm:text-base text-xs"
+      >
+        <FiUserPlus className="text-3xl p-1 border-text dark:border-textDark border-2 rounded-lg group-hover:scale-105 duration-150 group-hover:border-primary" />
+        <p className="group-hover:visible invisible">Requests</p>
+
+        {/* Display number of friend requests received: */}
+        <div className="absolute top-0 left-[60%] rounded-full hover:cursor-default bg-primary w-fit min-w-[15px] max-h-[15px] flex items-center justify-center p-1 text-xs font-extrabold text-background dark:text-backgroundDark">
+          12
+        </div>
       </Link>
-      {/* Display number of friend requests received: */}
-      <div className="rounded-full hover:cursor-default bg-primary mt-[2px] w-fit min-w-[20px] max-h-[20px] flex items-center justify-center p-1 text-sm font-extrabold text-background dark:text-backgroundDark">
-        6
-      </div>
     </li>
   )
 }

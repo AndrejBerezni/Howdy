@@ -65,7 +65,7 @@ export function AuthContextProvider({
         }
 
         const response = await fetch(
-          'http://localhost:3000/api/v1/auth/validate',
+          `${import.meta.env.VITE_API_BASE_URL}/auth/validate`,
           {
             headers: {
               Authorization: token,

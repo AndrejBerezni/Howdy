@@ -9,14 +9,14 @@ export default function LoginAdditionalOptions() {
     () => [
       {
         authMethod: 'Discord',
-        url: 'http://localhost:3000/api/v1/auth/discord/login',
+        url: `${import.meta.env.VITE_API_BASE_URL}/auth/discord/login`,
         icon: (
           <FaDiscord className="md:text-3xl rounded-full bg-[#5865F2] group-hover:drop-shadow-[0_0_2px_#0A0606] group-hover:dark:drop-shadow-[0_0_2px_#F4EBEB] p-1 duration-150 text-white group-hover:scale-110" />
         ),
       },
       {
         authMethod: 'Google',
-        url: 'http://localhost:3000/api/v1/auth/google/login',
+        url: `${import.meta.env.VITE_API_BASE_URL}/auth/google/login`,
         icon: (
           <FcGoogle className="md:text-3xl group-hover:drop-shadow-[0_0_2px_#0A0606] group-hover:dark:drop-shadow-[0_0_2px_#F4EBEB] group-hover:scale-110 duration-150" />
         ),

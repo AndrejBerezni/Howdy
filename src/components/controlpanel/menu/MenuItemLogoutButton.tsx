@@ -1,3 +1,4 @@
+import { RiLogoutCircleRLine } from 'react-icons/ri'
 import useLogout from '../../../hooks/useLogout'
 
 export default function MenuItemLogoutButton() {
@@ -8,9 +9,10 @@ export default function MenuItemLogoutButton() {
       <button
         type="button"
         onClick={logout}
-        className="hover:text-primary duration-150"
+        className="hover:text-primary justify-start duration-150 flex flex-col items-center group sm:text-base text-xs"
       >
-        Logout
+        <RiLogoutCircleRLine className="text-3xl" />
+        <p className="group-hover:visible invisible">Logout</p>
       </button>
     </li>
   )

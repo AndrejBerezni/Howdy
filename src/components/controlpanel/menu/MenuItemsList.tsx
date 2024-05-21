@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { IoClose } from 'react-icons/io5'
+import MenuItemCloseMenu from './MenuItemCloseMenu'
 import MenuItemFriendRequests from './MenuItemFriendRequests'
 import MenuItemLogoutButton from './MenuItemLogoutButton'
 import MenuItemProfile from './MenuItemProfile'
@@ -17,7 +17,7 @@ export default function MenuItemsList({
   return (
     <ul
       className={clsx(
-        'w-full h-full absolute top-0 sm:rounded-l-lg font-bold font-montserrat tracking-wider flex flex-col gap-8 text-2xl origin-left duration-500 bg-background dark:bg-backgroundDark px-8 divide-textSecondary py-12',
+        'w-full h-full absolute top-0 sm:rounded-tl-lg pt-2 font-bold items-center justify-around font-montserrat border-b-2 dark:border-none tracking-wider flex origin-left duration-500 bg-background dark:bg-backgroundDark divide-textSecondary',
         { 'right-0': menuOpen, 'right-full': !menuOpen }
       )}
     >
@@ -25,12 +25,7 @@ export default function MenuItemsList({
       <MenuItemFriendRequests />
       <MenuItemStatusSelect />
       <MenuItemLogoutButton />
-      <button
-        className="absolute right-4 top-4 text-3xl lg:text-4xl text-primary hover:-rotate-90 hover:text-secondary duration-300"
-        onClick={closeMenu}
-      >
-        <IoClose />
-      </button>
+      <MenuItemCloseMenu closeMenu={closeMenu} />
     </ul>
   )
 }
