@@ -17,9 +17,9 @@ export default function MenuItemsList({
   return (
     <ul
       className={clsx(
-        'w-full h-full absolute top-0 sm:rounded-tl-lg pt-4 font-bold items-center justify-between font-montserrat tracking-wider flex origin-left duration-500 bg-background dark:bg-backgroundDark',
+        'w-full h-full absolute top-0 sm:rounded-tl-lg pt-4 font-bold items-center justify-between font-montserrat tracking-wider flex origin-left duration-1000 bg-background dark:bg-backgroundDark',
         {
-          'right-0': menuOpen,
+          'right-0 shadow-sm': menuOpen,
           'right-[80%]': !menuOpen,
         }
       )}

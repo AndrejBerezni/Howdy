@@ -9,10 +9,10 @@ export default function UserProfilePicture({
   status: Status
 }) {
   return (
-    <div className="relative lg:w-[60px] w-[50px] lg:h-[60px] h-[50px]">
+    <div className="relative lg:w-[60px] w-[50px] lg:h-[60px] h-[50px] lg:min-w-[60px] min-w-[50px] lg:min-h-[60px] min-h-[50px] drop-shadow-md">
       <img
         src={img ?? '/profile-img-placeholder.png'}
-        className="lg:w-[60px] w-[50px] lg:h-[60px] h-[50px] rounded-full"
+        className="lg:w-[60px] w-[50px] lg:h-[60px] h-[50px] lg:min-w-[60px] min-w-[50px] lg:min-h-[60px] min-h-[50px] rounded-full"
       />
       <div
         className={clsx(
