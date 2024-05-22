@@ -14,7 +14,7 @@ export default function ListSelectButtons({
           key={`${list}-select-btn`}
           onClick={() => setListInView(list as 'chats' | 'friends')}
           className={clsx(
-            'uppercase tracking-wider font-montserrat min-w-[40%] rounded-3xl font-semibold py-1',
+            'uppercase shadow-md tracking-wider font-montserrat min-w-[40%] rounded-3xl font-semibold py-1',
             {
               'bg-primary text-background dark:text-backgroundDark':
                 listInView === list,
