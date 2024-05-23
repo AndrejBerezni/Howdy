@@ -1,10 +1,9 @@
 import { createContext, useReducer, Dispatch, useEffect, useState } from 'react'
 import { AuthActionType } from '../compiler/enums'
-import { IUser } from '../compiler/interfaces'
 
 interface IAuthContext {
   isAuth: boolean
-  user: IUser | null
+  user: string | null
   dispatch: Dispatch<IAuthAction>
   isValidating: boolean
 }
@@ -18,11 +17,11 @@ export const AuthContext = createContext<IAuthContext>({
 
 interface IAuthAction {
   type: AuthActionType
-  payload: IUser | null
+  payload: string | null
 }
 
 const authReducer = (
-  state: { isAuth: boolean; user: IUser | null },
+  state: { isAuth: boolean; user: string | null },
   action: IAuthAction
 ) => {
   switch (action.type) {
@@ -54,8 +53,7 @@ export function AuthContextProvider({
   useEffect(() => {
     const validateAccess = async () => {
       try {
-        const userString = localStorage.getItem('user')
-        const user = userString ? JSON.parse(userString) : null
+        const user = localStorage.getItem('user')
         const token = localStorage.getItem('auth')
 
         if (!user || !token) {

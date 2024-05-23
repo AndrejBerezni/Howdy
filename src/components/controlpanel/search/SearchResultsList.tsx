@@ -12,7 +12,7 @@ export default function SearchResultsList({
   searchError: string | null
 }) {
   return (
-    <ul className="absolute w-full h-full top-0 left-0 flex-1 px-4 py-4 bg-background dark:bg-backgroundDark flex flex-col overflow-y-auto scrollbar-thin scrollbar-thumb-secondary scrollbar-track-transparent">
+    <ul className="absolute w-full h-full top-0 left-0 flex-1 px-4 py-4 bg-background dark:bg-backgroundDark flex flex-col overflow-y-auto scrollbar-thin scrollbar-thumb-secondary scrollbar-track-transparent gap-4">
       {resultsLoading ? (
         <div className="h-full flex justify-center items-center">
           <Loader size="button" />
@@ -24,7 +24,7 @@ export default function SearchResultsList({
       ) : (
         searchResults.map((result) => (
           <SearchResultUser
-            key={`${result.uid}-search-result-user`}
+            key={`${result._id}-search-result-user`}
             user={result}
           />
         ))

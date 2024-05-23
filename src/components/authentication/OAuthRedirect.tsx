@@ -17,28 +17,20 @@ export default function OAuthRedirect() {
 
   useEffect(() => {
     const token = searchParams.get('token')
-    const uid = searchParams.get('uid')
-    const nickname = searchParams.get('nickname')
-    const email = searchParams.get('email')
+    const _id = searchParams.get('_id')
 
     //if some information is missing, display error
-    if (!token || !uid || !nickname || !email) {
+    if (!token || !_id) {
       setError(
         'Unable to complete login using this authentication method, please try again with different method.'
       )
       return
     }
 
-    const user = {
-      uid,
-      nickname,
-      email,
-    }
-
     localStorage.setItem('auth', token.replace('%20', ' '))
-    localStorage.setItem('user', JSON.stringify(user))
+    localStorage.setItem('user', _id)
 
-    dispatch({ type: AuthActionType.LOGIN, payload: user })
+    dispatch({ type: AuthActionType.LOGIN, payload: _id })
 
     navigate('/')
   }, [dispatch, navigate, searchParams])

@@ -43,7 +43,7 @@ export default function useRegister() {
 
       //save response data to local storage to be used by app
       localStorage.setItem('auth', data.token.token)
-      localStorage.setItem('user', JSON.stringify(data.user))
+      localStorage.setItem('user', data.user)
 
       //update state
       dispatch({ type: AuthActionType.LOGIN, payload: data.user })
