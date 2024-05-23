@@ -1,18 +1,19 @@
-import { useContext } from 'react'
+import { useSelector } from 'react-redux'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import OAuthRedirect from '../components/authentication/OAuthRedirect'
 import Chat from '../components/chat'
 import ChatPlaceholder from '../components/chat/ChatPlaceholder'
 import Loader from '../components/Loader'
-import { AuthContext } from '../context/AuthContext'
 import LoginPage from '../pages/Login'
 import MessengerPage from '../pages/Messenger'
 import NotFoundPage from '../pages/NotFound'
 import RegisterPage from '../pages/Register'
+import { getValidationStatus, getAuthStatus } from '../store/auth/selectors'
 
 export default function Router() {
   //for each route, display Loader while validating authentication status, and then, according to that status, display correct page
-  const { isAuth, isValidating } = useContext(AuthContext)
+  const isValidating = useSelector(getValidationStatus)
+  const isAuth = useSelector(getAuthStatus)
 
   return (
     <Routes>

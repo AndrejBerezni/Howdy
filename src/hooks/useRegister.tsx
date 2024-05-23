@@ -1,11 +1,11 @@
-import { useState, useContext } from 'react'
-import { AuthActionType } from '../compiler/enums'
-import { AuthContext } from '../context/AuthContext'
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { login as reduxLogin } from '../store/auth'
 
 export default function useRegister() {
+  const dispatch = useDispatch()
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
-  const { dispatch } = useContext(AuthContext)
 
   const register = async (
     firstName: string,
@@ -46,7 +46,7 @@ export default function useRegister() {
       localStorage.setItem('user', data.user)
 
       //update state
-      dispatch({ type: AuthActionType.LOGIN, payload: data.user })
+      dispatch(reduxLogin(data.user))
 
       setIsLoading(false)
     } catch (error) {

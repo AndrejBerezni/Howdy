@@ -1,7 +1,7 @@
-import { useEffect, useContext, useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { useSearchParams, Link, useNavigate } from 'react-router-dom'
-import { AuthActionType } from '../../compiler/enums'
-import { AuthContext } from '../../context/AuthContext'
+import { login } from '../../store/auth'
 import Loader from '../Loader'
 import LogoWithName from '../LogoWithName'
 
@@ -11,7 +11,7 @@ import LogoWithName from '../LogoWithName'
 
 export default function OAuthRedirect() {
   const navigate = useNavigate()
-  const { dispatch } = useContext(AuthContext)
+  const dispatch = useDispatch()
   const [error, setError] = useState<string | null>(null)
   const [searchParams] = useSearchParams()
 
@@ -30,7 +30,7 @@ export default function OAuthRedirect() {
     localStorage.setItem('auth', token.replace('%20', ' '))
     localStorage.setItem('user', _id)
 
-    dispatch({ type: AuthActionType.LOGIN, payload: _id })
+    dispatch(login(_id))
 
     navigate('/')
   }, [dispatch, navigate, searchParams])

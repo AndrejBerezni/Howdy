@@ -1,13 +1,12 @@
-import { useContext } from 'react'
-import { AuthActionType } from '../compiler/enums'
-import { AuthContext } from '../context/AuthContext'
+import { useDispatch } from 'react-redux'
+import { logout as reduxLogout } from '../store/auth'
 
 export default function useLogout() {
-  const { dispatch } = useContext(AuthContext)
+  const dispatch = useDispatch()
 
   const logout = () => {
     localStorage.clear()
-    dispatch({ type: AuthActionType.LOGOUT, payload: null })
+    dispatch(reduxLogout())
   }
 
   return { logout }
