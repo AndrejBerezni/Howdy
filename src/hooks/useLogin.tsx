@@ -1,11 +1,13 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
+import useUserData from './useUserData'
 import { login as reduxLogin } from '../store/auth'
 
 export default function useLogin() {
   const dispatch = useDispatch()
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
+  const { setUserData } = useUserData()
 
   const login = async (login: string, password: string) => {
     try {
@@ -35,6 +37,7 @@ export default function useLogin() {
 
       //update state
       dispatch(reduxLogin(data.user))
+      await setUserData(data.user)
 
       setIsLoading(false)
     } catch (error) {

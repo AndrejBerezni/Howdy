@@ -1,8 +1,10 @@
 import { useDispatch } from 'react-redux'
+import useUserData from './useUserData'
 import { startValidation, endValidation, login, logout } from '../store/auth'
 
 export default function useAccessValidation() {
   const dispatch = useDispatch()
+  const { setUserData } = useUserData()
 
   const validateAccess = async () => {
     try {
@@ -28,6 +30,7 @@ export default function useAccessValidation() {
       )
 
       if (response.ok) {
+        await setUserData(user)
         dispatch(login(user))
       } else {
         dispatch(logout())

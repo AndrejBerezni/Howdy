@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import useAccessValidation from './hooks/useAuthValidation'
+import useAccessValidation from './hooks/useAccessValidation'
 import Router from './router/Routes'
 
 function App() {

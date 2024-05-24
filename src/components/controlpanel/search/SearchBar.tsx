@@ -3,6 +3,7 @@ import { debounce } from 'lodash'
 import { FaSearch } from 'react-icons/fa'
 import { TiDelete } from 'react-icons/ti'
 import { IUser } from '../../../compiler/interfaces'
+import generateRequestHeaders from '../../../utils/generateRequestHeaders'
 
 export default function SearchBar({
   setSearchResults,
@@ -35,20 +36,12 @@ export default function SearchBar({
   const debouncedSearch = debounce(async (input: string) => {
     try {
       setResultsLoading(true)
-      const token = localStorage.getItem('auth')
 
-      if (!token) {
-        setSearchError('Please authenticate to perform a search')
-        return
-      }
-
+      const headers = generateRequestHeaders()
       const response = await fetch(
         `${import.meta.env.VITE_API_BASE_URL}/users/search?query=${input}`,
         {
-          headers: {
-            Authorization: token,
-            'Content-Type': 'application/json',
-          },
+          headers,
         }
       )
 
