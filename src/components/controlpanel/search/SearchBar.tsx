@@ -2,7 +2,9 @@ import { useState, ChangeEvent, useEffect, useCallback } from 'react'
 import { debounce } from 'lodash'
 import { FaSearch } from 'react-icons/fa'
 import { TiDelete } from 'react-icons/ti'
+import { useSelector } from 'react-redux'
 import { IUser } from '../../../compiler/interfaces'
+import { getUserInfo } from '../../../store/user/selectors'
 import generateRequestHeaders from '../../../utils/generateRequestHeaders'
 
 export default function SearchBar({
@@ -16,6 +18,7 @@ export default function SearchBar({
   setResultsLoading: (isLoading: boolean) => void
   setSearchError: (error: string | null) => void
 }) {
+  const user = useSelector(getUserInfo)
   const [input, setInput] = useState<string>('')
 
   //since handleClear is dependency of useEffect, it will trigger it on every render if not wrapped in useCallback
@@ -56,7 +59,11 @@ export default function SearchBar({
         throw new Error('No results to show')
       }
 
-      setSearchResults(searchResults.results)
+      setSearchResults(
+        searchResults.results.filter(
+          (result: IUser) => result._id !== user?._id
+        ) // filter to don't show user to itself
+      )
       setSearchError(null)
       setShowResults(true)
       setResultsLoading(false)

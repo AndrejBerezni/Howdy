@@ -1,8 +1,16 @@
-import { FiUserPlus } from 'react-icons/fi'
+import SearchResultAddFriendButton from './SearchResultAddFriendButton'
 import { IUser } from '../../../compiler/interfaces'
+import MessageButton from '../../MessageButton'
+import RemoveFriendButton from '../../RemoveFriendButton'
 import UserProfilePicture from '../../UserProfilePicture'
 
-export default function SearchResultUser({ user }: { user: IUser }) {
+export default function SearchResultUser({
+  user,
+  isFriend,
+}: {
+  user: IUser
+  isFriend: boolean
+}) {
   // to check if user is friend, when I implement friends functionality, and display appropriate buttons (add friend or message and remove friend)
 
   return (
@@ -19,10 +27,16 @@ export default function SearchResultUser({ user }: { user: IUser }) {
           </p>
         )}
       </div>
-      <button className="group ml-auto flex flex-col items-center hover:text-secondary duration-150">
-        <FiUserPlus className=" text-3xl" />
-        <p className="text-xs invisible group-hover:visible">Add friend</p>
-      </button>
+      <div className="ml-auto h-full flex justify-end items-end">
+        {isFriend ? (
+          <>
+            <MessageButton />
+            <RemoveFriendButton />
+          </>
+        ) : (
+          <SearchResultAddFriendButton />
+        )}
+      </div>
     </li>
   )
 }

@@ -1,5 +1,7 @@
+import { useSelector } from 'react-redux'
 import SearchResultUser from './SearchResultUser'
 import { IUser } from '../../../compiler/interfaces'
+import { getFriends } from '../../../store/user/selectors'
 import Loader from '../../Loader'
 
 export default function SearchResultsList({
@@ -11,6 +13,8 @@ export default function SearchResultsList({
   resultsLoading: boolean
   searchError: string | null
 }) {
+  const friends: string[] = useSelector(getFriends)
+
   return (
     <ul className="absolute w-full h-full top-0 left-0 flex-1 px-4 py-4 bg-background dark:bg-backgroundDark flex flex-col overflow-y-auto scrollbar-thin scrollbar-thumb-secondary scrollbar-track-transparent gap-4">
       {resultsLoading ? (
@@ -26,6 +30,7 @@ export default function SearchResultsList({
           <SearchResultUser
             key={`${result._id}-search-result-user`}
             user={result}
+            isFriend={friends.includes(result._id)}
           />
         ))
       )}
