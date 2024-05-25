@@ -1,33 +1,20 @@
 import { useState, ChangeEvent, useEffect, useCallback } from 'react'
-import { debounce } from 'lodash'
 import { FaSearch } from 'react-icons/fa'
 import { TiDelete } from 'react-icons/ti'
-import { useSelector } from 'react-redux'
-import { IUser } from '../../../compiler/interfaces'
-import { getUserInfo } from '../../../store/user/selectors'
-import generateRequestHeaders from '../../../utils/generateRequestHeaders'
+import { useDispatch } from 'react-redux'
+import useSearch from '../../../hooks/useSearch'
+import { clearSearch } from '../../../store/search'
 
-export default function SearchBar({
-  setSearchResults,
-  setShowResults,
-  setResultsLoading,
-  setSearchError,
-}: {
-  setSearchResults: (results: IUser[]) => void
-  setShowResults: (show: boolean) => void
-  setResultsLoading: (isLoading: boolean) => void
-  setSearchError: (error: string | null) => void
-}) {
-  const user = useSelector(getUserInfo)
+export default function SearchBar() {
+  const dispatch = useDispatch()
+  const { debouncedSearch } = useSearch()
   const [input, setInput] = useState<string>('')
 
   //since handleClear is dependency of useEffect, it will trigger it on every render if not wrapped in useCallback
   const handleClear = useCallback(() => {
     setInput('')
-    setSearchError(null)
-    setResultsLoading(false)
-    setShowResults(false)
-  }, [setSearchError, setResultsLoading, setShowResults])
+    dispatch(clearSearch())
+  }, [dispatch])
 
   //if user manually deletes input, hide results and get back to previous view (chats or friends)
   useEffect(() => {
@@ -36,53 +23,12 @@ export default function SearchBar({
     }
   }, [input, handleClear])
 
-  const debouncedSearch = debounce(async (input: string) => {
-    try {
-      setResultsLoading(true)
-
-      const headers = generateRequestHeaders()
-      const response = await fetch(
-        `${import.meta.env.VITE_API_BASE_URL}/users/search?query=${input}`,
-        {
-          headers,
-        }
-      )
-
-      if (!response.ok) {
-        const error = await response.json()
-        throw new Error(error.message)
-      }
-
-      const searchResults = await response.json()
-
-      if (searchResults.numberOfResults === 0) {
-        throw new Error('No results to show')
-      }
-
-      setSearchResults(
-        searchResults.results.filter(
-          (result: IUser) => result._id !== user?._id
-        ) // filter to don't show user to itself
-      )
-      setSearchError(null)
-      setShowResults(true)
-      setResultsLoading(false)
-    } catch (err) {
-      setResultsLoading(false)
-      if (err instanceof Error) {
-        setSearchError(err.message)
-      } else {
-        setSearchError('Something went wrong')
-      }
-    }
-  }, 1000)
-
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const searchInput = event.target.value
     setInput(searchInput)
-    if (searchInput.length > 1) {
-      debouncedSearch(searchInput)
-    }
+    // if (searchInput.length > 1) {
+    debouncedSearch(searchInput)
+    // }
   }
 
   return (

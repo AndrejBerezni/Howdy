@@ -1,18 +1,17 @@
 import { useSelector } from 'react-redux'
 import SearchResultUser from './SearchResultUser'
-import { IUser } from '../../../compiler/interfaces'
+import {
+  getUsersSearchResults,
+  getResultsLoading,
+  getSearchError,
+} from '../../../store/search/selectors'
 import { getFriends } from '../../../store/user/selectors'
 import Loader from '../../Loader'
 
-export default function SearchResultsList({
-  searchResults,
-  resultsLoading,
-  searchError,
-}: {
-  searchResults: IUser[]
-  resultsLoading: boolean
-  searchError: string | null
-}) {
+export default function SearchResultsList() {
+  const usersSearchResults = useSelector(getUsersSearchResults)
+  const resultsLoading = useSelector(getResultsLoading)
+  const searchError = useSelector(getSearchError)
   const friends: string[] = useSelector(getFriends)
 
   return (
@@ -27,7 +26,7 @@ export default function SearchResultsList({
         </p>
       ) : (
         <>
-          {searchResults.map((result) => (
+          {usersSearchResults.map((result) => (
             <SearchResultUser
               key={`${result._id}-search-result-user`}
               user={result}
