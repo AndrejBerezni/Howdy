@@ -1,10 +1,12 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import authReducer from './auth'
+import searchReducer from './search'
 import userReducer from './user'
 
 const reducer = combineReducers({
   auth: authReducer,
   user: userReducer,
+  search: searchReducer,
 })
 
 export const store = configureStore({

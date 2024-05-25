@@ -26,13 +26,15 @@ export default function SearchResultsList({
           {searchError}
         </p>
       ) : (
-        searchResults.map((result) => (
-          <SearchResultUser
-            key={`${result._id}-search-result-user`}
-            user={result}
-            isFriend={friends.includes(result._id)}
-          />
-        ))
+        <>
+          {searchResults.map((result) => (
+            <SearchResultUser
+              key={`${result._id}-search-result-user`}
+              user={result}
+              isFriend={friends.includes(result._id)}
+            />
+          ))}
+        </>
       )}
     </ul>
   )

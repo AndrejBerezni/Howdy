@@ -1,7 +1,7 @@
-import SearchResultAddFriendButton from './SearchResultAddFriendButton'
 import { IUser } from '../../../compiler/interfaces'
-import MessageButton from '../../MessageButton'
-import RemoveFriendButton from '../../RemoveFriendButton'
+import AddFriendButton from '../../buttons/AddFriendButton'
+import MessageButton from '../../buttons/MessageButton'
+import RemoveFriendButton from '../../buttons/RemoveFriendButton'
 import UserProfilePicture from '../../UserProfilePicture'
 
 export default function SearchResultUser({
@@ -34,7 +34,7 @@ export default function SearchResultUser({
             <RemoveFriendButton />
           </>
         ) : (
-          <SearchResultAddFriendButton />
+          <AddFriendButton />
         )}
       </div>
     </li>

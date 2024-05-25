@@ -1,6 +1,6 @@
 import { FiUserPlus } from 'react-icons/fi'
 
-export default function SearchResultAddFriendButton() {
+export default function AddFriendButton() {
   return (
     <button className="group flex flex-col items-center hover:text-secondary duration-150">
       <FiUserPlus className=" text-3xl" />
