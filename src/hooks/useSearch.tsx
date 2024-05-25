@@ -3,22 +3,28 @@ import { useDispatch, useSelector } from 'react-redux'
 import { IUser } from '../compiler/interfaces'
 import {
   setUsersResults,
+  addUsersResults,
   setShowResults,
   setResultsLoading,
   setSearchError,
+  setSearchPage,
+  setAllResultsDisplayed,
 } from '../store/search'
+import { getSearchPage } from '../store/search/selectors'
 import { getUserInfo } from '../store/user/selectors'
 import generateRequestHeaders from '../utils/generateRequestHeaders'
 
 export default function useSearch() {
   const dispatch = useDispatch()
   const user = useSelector(getUserInfo)
+  const page = useSelector(getSearchPage)
+  const headers = generateRequestHeaders()
 
   const debouncedSearch = debounce(async (input: string) => {
     try {
       dispatch(setResultsLoading(true))
+      dispatch(setSearchPage(1))
 
-      const headers = generateRequestHeaders()
       const response = await fetch(
         `${import.meta.env.VITE_API_BASE_URL}/users/search?query=${input}`,
         {
@@ -37,13 +43,16 @@ export default function useSearch() {
         throw new Error('No results to show')
       }
 
-      dispatch(
-        setUsersResults(
-          searchResults.results.filter(
-            (result: IUser) => result._id !== user?._id
-          ) // filter to don't show user to itself
-        )
-      )
+      const results = searchResults.results.filter(
+        (result: IUser) => result._id !== user?._id
+      ) // filter to don't show user to itself
+
+      //checking length after filtering because current user might be among results and then we will have 4 results displayed with 'load more' button:
+      if (results.length < 5) {
+        dispatch(setAllResultsDisplayed(true))
+      }
+
+      dispatch(setUsersResults(results))
       dispatch(setSearchError(null))
       dispatch(setShowResults(true))
       dispatch(setResultsLoading(false))
@@ -57,5 +66,44 @@ export default function useSearch() {
     }
   }, 1000)
 
-  return { debouncedSearch }
+  const loadMoreResults = async (input: string) => {
+    try {
+      const newPage = page + 1
+      dispatch(setSearchPage(newPage))
+
+      const response = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/users/search?query=${input}&page=${newPage}`,
+        {
+          headers,
+        }
+      )
+
+      if (!response.ok) {
+        const error = await response.json()
+        throw new Error(error.message)
+      }
+
+      const searchResults = await response.json()
+
+      if (searchResults.numberOfResults < 5) {
+        dispatch(setAllResultsDisplayed(true))
+      }
+
+      dispatch(
+        addUsersResults(
+          searchResults.results.filter(
+            (result: IUser) => result._id !== user?._id
+          )
+        )
+      )
+    } catch (err) {
+      if (err instanceof Error) {
+        dispatch(setSearchError(err.message))
+      } else {
+        dispatch(setSearchError('Something went wrong'))
+      }
+    }
+  }
+
+  return { debouncedSearch, loadMoreResults }
 }

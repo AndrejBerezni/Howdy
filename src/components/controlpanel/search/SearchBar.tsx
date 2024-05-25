@@ -1,31 +1,26 @@
-import { useState, ChangeEvent, useEffect, useCallback } from 'react'
+import { ChangeEvent, useEffect } from 'react'
 import { FaSearch } from 'react-icons/fa'
 import { TiDelete } from 'react-icons/ti'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import useSearch from '../../../hooks/useSearch'
-import { clearSearch } from '../../../store/search'
+import { clearSearch, setSearchInput } from '../../../store/search'
+import { getSearchInput } from '../../../store/search/selectors'
 
 export default function SearchBar() {
   const dispatch = useDispatch()
   const { debouncedSearch } = useSearch()
-  const [input, setInput] = useState<string>('')
-
-  //since handleClear is dependency of useEffect, it will trigger it on every render if not wrapped in useCallback
-  const handleClear = useCallback(() => {
-    setInput('')
-    dispatch(clearSearch())
-  }, [dispatch])
+  const input = useSelector(getSearchInput)
 
   //if user manually deletes input, hide results and get back to previous view (chats or friends)
   useEffect(() => {
     if (input === '') {
-      handleClear()
+      dispatch(clearSearch())
     }
-  }, [input, handleClear])
+  }, [input, dispatch])
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const searchInput = event.target.value
-    setInput(searchInput)
+    dispatch(setSearchInput(searchInput))
     // if (searchInput.length > 1) {
     debouncedSearch(searchInput)
     // }
@@ -39,7 +34,7 @@ export default function SearchBar() {
           type="button"
           className="text-primary text-2xl absolute top-7 right-6 hover:scale-125 duration-150 hover:text-background dark:hover:text-backgroundDark"
         >
-          <TiDelete onClick={handleClear} />
+          <TiDelete onClick={() => dispatch(clearSearch())} />
         </button>
       )}
       <input
