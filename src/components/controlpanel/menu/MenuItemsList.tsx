@@ -3,24 +3,17 @@ import MenuItemFriendRequests from './MenuItemFriendRequests'
 import MenuItemLogoutButton from './MenuItemLogoutButton'
 import MenuItemProfile from './MenuItemProfile'
 import MenuItemStatusSelect from './MenuItemStatusSelect'
-import MenuItemToggleMenu from './MenuItemToggleMenu'
 
 //each items in this menu has unique functionality and dependencies, so it was no use in putting them in array and then mapping over it to generate <li>s
 
-export default function MenuItemsList({
-  toggleMenu,
-  menuOpen,
-}: {
-  toggleMenu: () => void
-  menuOpen: boolean
-}) {
+export default function MenuItemsList({ menuOpen }: { menuOpen: boolean }) {
   return (
     <ul
       className={clsx(
-        'w-full h-full absolute top-0 sm:rounded-tl-lg pt-4 font-bold items-center justify-between font-montserrat tracking-wider flex origin-left duration-1000 bg-background dark:bg-backgroundDark',
+        'w-4/5 h-full z-10 absolute top-0 pt-4 font-bold sm:text-sm text-xs items-center justify-between font-montserrat tracking-wider flex origin-right duration-1000 bg-background dark:bg-backgroundDark',
         {
-          'right-0 shadow-sm': menuOpen,
-          'right-[80%]': !menuOpen,
+          'right-[20%]': menuOpen,
+          'right-full': !menuOpen,
         }
       )}
     >
@@ -28,7 +21,6 @@ export default function MenuItemsList({
       <MenuItemFriendRequests />
       <MenuItemStatusSelect />
       <MenuItemLogoutButton />
-      <MenuItemToggleMenu toggleMenu={toggleMenu} menuOpen={menuOpen} />
     </ul>
   )
 }

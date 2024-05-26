@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom'
 
 export default function MenuItemFriendRequests() {
   return (
-    <li className="w-1/5">
+    <li className="w-1/4">
       <Link
         to="/requests"
-        className="hover:text-primary relative group flex flex-col items-center group sm:text-base text-xs gap-1"
+        className="hover:text-primary relative group flex flex-col items-center group gap-1"
       >
         <FiUserPlus className="text-2xl p-0 border-text dark:border-textDark border-2 rounded-lg group-hover:scale-105 duration-150 group-hover:border-primary" />
         <p className="group-hover:visible invisible text-primary">Requests</p>

@@ -21,9 +21,9 @@ export default function SearchBar() {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const searchInput = event.target.value
     dispatch(setSearchInput(searchInput))
-    // if (searchInput.length > 1) {
-    debouncedSearch(searchInput)
-    // }
+    if (searchInput.length > 1) {
+      debouncedSearch(searchInput)
+    }
   }
 
   return (

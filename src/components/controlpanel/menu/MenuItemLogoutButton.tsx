@@ -5,11 +5,11 @@ export default function MenuItemLogoutButton() {
   const { logout } = useLogout()
 
   return (
-    <li className="w-1/5 flex justify-center">
+    <li className="w-1/4 flex justify-center">
       <button
         type="button"
         onClick={logout}
-        className="hover:text-primary justify-start flex flex-col items-center group sm:text-base text-xs gap-1"
+        className="hover:text-primary justify-start flex flex-col items-center group gap-1"
       >
         <RiLogoutCircleRLine className="text-2xl group-hover:scale-105 duration-150" />
         <p className="group-hover:visible invisible text-primary">Logout</p>

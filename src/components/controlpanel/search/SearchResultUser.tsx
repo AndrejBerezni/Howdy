@@ -14,7 +14,7 @@ export default function SearchResultUser({
   // to check if user is friend, when I implement friends functionality, and display appropriate buttons (add friend or message and remove friend)
 
   return (
-    <li className="flex items-center pr-4 pb-2 border-b-[1px] gap-2 border-b-textSecondary">
+    <li className="flex items-center pr-4 pb-2 gap-3">
       <UserProfilePicture
         img={user.profilePicture ?? '/profile-img-placeholder.png'}
         status="online"

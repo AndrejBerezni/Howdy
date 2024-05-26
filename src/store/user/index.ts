@@ -4,14 +4,17 @@ import { IUser } from '../../compiler/interfaces'
 interface IUserState {
   user: IUser | null
   friends: string[]
-  friendRequests: string[]
+  friendRequests: {
+    sent: { _id: string; recipient: string }[]
+    received: { _id: string; sender: string }[]
+  }
   chats: string[]
 }
 
 const initialState: IUserState = {
   user: null,
   friends: [],
-  friendRequests: [],
+  friendRequests: { sent: [], received: [] },
   chats: [],
 }
 

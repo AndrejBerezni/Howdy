@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import { RiCloseLargeLine } from 'react-icons/ri'
 
-export default function MenuItemToggleMenu({
+export default function ToggleMenuButton({
   toggleMenu,
   menuOpen,
 }: {
@@ -9,9 +9,9 @@ export default function MenuItemToggleMenu({
   menuOpen: boolean
 }) {
   return (
-    <li className="w-1/5 flex justify-center">
+    <li className="z-20 w-1/5 h-full flex justify-center items-center pt-4 font-bold sm:text-sm text-xs font-montserrat tracking-wider">
       <button
-        className="group hover:text-primary flex flex-col items-center sm:text-base text-xs gap-1"
+        className="group hover:text-primary flex flex-col items-center gap-1"
         onClick={toggleMenu}
       >
         {menuOpen ? (

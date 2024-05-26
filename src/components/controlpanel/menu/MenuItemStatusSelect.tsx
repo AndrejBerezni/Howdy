@@ -35,7 +35,7 @@ export default function MenuItemStatusSelect() {
   }
 
   return (
-    <li className="group hover:cursor-default flex flex-col items-center sm:text-base text-xs gap-1 w-1/5">
+    <li className="group hover:cursor-default flex flex-col items-center gap-1 w-1/4">
       <div className="flex items-center justify-between gap-1">
         <button
           className="hover:scale-125 duration-150"
