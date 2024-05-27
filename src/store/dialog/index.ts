@@ -18,7 +18,9 @@ export const dialogSlice = createSlice({
       state.type = action.payload.type
       state.message = action.payload.message
     },
-    hideDialog: () => initialState,
+    hideDialog: (state) => {
+      state.type = ''
+    },
   },
 })
 
