@@ -17,7 +17,11 @@ export default function ToggleMenuButton({
         {menuOpen ? (
           <RiCloseLargeLine className="text-2xl group-hover:scale-105 duration-150" />
         ) : (
-          <img src="/Logo-no-bg.png" className="flex-1 lg:h-[30px] h-[24px]" />
+          <img
+            src="/Logo-no-bg.png"
+            className="flex-1 lg:h-[30px] h-[24px]"
+            alt="Howdy logo"
+          />
         )}
         <p
           className={clsx('', {
