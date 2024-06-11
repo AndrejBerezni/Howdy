@@ -13,7 +13,6 @@ export default function useLogin() {
     try {
       setIsLoading(true)
       setError(null)
-      // console.log(import.meta.env.VITE_API_BASE_URL)
       const response = await fetch(
         `${import.meta.env.VITE_API_BASE_URL}/auth/login`,
         {

@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux'
 import useUserData from './useUserData'
 import { startValidation, endValidation, login, logout } from '../store/auth'
+import { showDialog } from '../store/dialog'
 
 export default function useAccessValidation() {
   const dispatch = useDispatch()
@@ -39,8 +40,13 @@ export default function useAccessValidation() {
 
       dispatch(endValidation())
     } catch (error) {
-      //[to be updated - error handling]
-      console.log(error)
+      let message
+      if (error instanceof Error) {
+        message = error.message
+      } else {
+        message = 'Something went wrong, please try again later.'
+      }
+      dispatch(showDialog({ type: 'error', message }))
     }
   }
 

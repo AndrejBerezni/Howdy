@@ -21,32 +21,42 @@ export default function SearchResultsList() {
   const friends: string[] = useSelector(getFriends)
   const input = useSelector(getSearchInput)
 
+  let content
+
+  if (resultsLoading) {
+    content = (
+      <div className="h-full flex justify-center items-center">
+        <Loader size="button" />
+      </div>
+    )
+  } else if (searchError) {
+    content = (
+      <p className="self-center font-semibold text-accent mt-12">
+        {searchError}
+      </p>
+    )
+  } else {
+    content = (
+      <>
+        {usersSearchResults.map((result) => (
+          <SearchResultUser
+            key={`${result._id}-search-result-user`}
+            user={result}
+            isFriend={friends.includes(result._id)}
+          />
+        ))}
+        {allResultsDisplayed ? (
+          <p className="text-center text-textSecondary">All Results Shown</p>
+        ) : (
+          <LoadMoreResultsButton handleClick={() => loadMoreResults(input)} />
+        )}
+      </>
+    )
+  }
+
   return (
     <ul className="absolute w-full h-full top-0 left-0 flex-1 px-4 py-4 bg-background dark:bg-backgroundDark flex flex-col overflow-y-auto scrollbar-thin scrollbar-thumb-secondary scrollbar-track-transparent gap-4">
-      {resultsLoading ? (
-        <div className="h-full flex justify-center items-center">
-          <Loader size="button" />
-        </div>
-      ) : searchError ? (
-        <p className="self-center font-semibold text-accent mt-12">
-          {searchError}
-        </p>
-      ) : (
-        <>
-          {usersSearchResults.map((result) => (
-            <SearchResultUser
-              key={`${result._id}-search-result-user`}
-              user={result}
-              isFriend={friends.includes(result._id)}
-            />
-          ))}
-          {allResultsDisplayed ? (
-            <p className="text-center text-textSecondary">All Results Shown</p>
-          ) : (
-            <LoadMoreResultsButton handleClick={() => loadMoreResults(input)} />
-          )}
-        </>
-      )}
+      {content}
     </ul>
   )
 }
