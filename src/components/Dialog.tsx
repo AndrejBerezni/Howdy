@@ -29,6 +29,9 @@ export default function Dialog() {
         <div
           className="z-10 bg-text opacity-70 fixed top-0 left-0 w-full h-full"
           onClick={handleClose}
+          role="button"
+          tabIndex={0}
+          aria-label="Close modal"
         ></div>
       </>
     )
