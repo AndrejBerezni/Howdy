@@ -3,7 +3,7 @@ import { IUser } from '../../compiler/interfaces'
 
 interface IUserState {
   user: IUser | null
-  friends: string[]
+  friends: IUser[]
   friendRequests: {
     sent: { _id: string; recipient: string }[]
     received: { _id: string; sender: string }[]

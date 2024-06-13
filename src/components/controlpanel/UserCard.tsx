@@ -1,10 +1,10 @@
-import { IUser } from '../../../compiler/interfaces'
-import AddFriendButton from '../../buttons/AddFriendButton'
-import MessageButton from '../../buttons/MessageButton'
-import RemoveFriendButton from '../../buttons/RemoveFriendButton'
-import UserProfilePicture from '../../UserProfilePicture'
+import { IUser } from '../../compiler/interfaces'
+import AddFriendButton from '../buttons/AddFriendButton'
+import MessageButton from '../buttons/MessageButton'
+import RemoveFriendButton from '../buttons/RemoveFriendButton'
+import UserProfilePicture from '../UserProfilePicture'
 
-export default function SearchResultUser({
+export default function UserCard({
   user,
   isFriend,
 }: {

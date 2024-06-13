@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import SearchResultUser from './SearchResultUser'
+import { IUser } from '../../../compiler/interfaces'
 import useSearch from '../../../hooks/useSearch'
 import {
   getUsersSearchResults,
@@ -11,6 +11,7 @@ import {
 import { getFriends } from '../../../store/user/selectors'
 import LoadMoreResultsButton from '../../buttons/LoadMoreResultsButton'
 import Loader from '../../Loader'
+import UserCard from '../UserCard'
 
 export default function SearchResultsList() {
   const { loadMoreResults } = useSearch()
@@ -18,7 +19,7 @@ export default function SearchResultsList() {
   const resultsLoading = useSelector(getResultsLoading)
   const searchError = useSelector(getSearchError)
   const allResultsDisplayed = useSelector(getAllResultsDisplayed)
-  const friends: string[] = useSelector(getFriends)
+  const friends: IUser[] = useSelector(getFriends)
   const input = useSelector(getSearchInput)
 
   let content
@@ -39,10 +40,10 @@ export default function SearchResultsList() {
     content = (
       <>
         {usersSearchResults.map((result) => (
-          <SearchResultUser
+          <UserCard
             key={`${result._id}-search-result-user`}
             user={result}
-            isFriend={friends.includes(result._id)}
+            isFriend={friends.some((friend) => friend._id === result._id)}
           />
         ))}
         {allResultsDisplayed ? (
@@ -55,8 +56,6 @@ export default function SearchResultsList() {
   }
 
   return (
-    <ul className="absolute w-full h-full top-0 left-0 flex-1 px-4 py-4 bg-background dark:bg-backgroundDark flex flex-col overflow-y-auto scrollbar-thin scrollbar-thumb-secondary scrollbar-track-transparent gap-4">
-      {content}
-    </ul>
+    <ul className="z-10 absolute control-panel-list top-0 left-0">{content}</ul>
   )
 }
