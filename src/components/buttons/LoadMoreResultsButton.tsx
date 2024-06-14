@@ -1,9 +1,9 @@
 import { IoReload } from 'react-icons/io5'
 export default function LoadMoreResultsButton({
   handleClick,
-}: {
+}: Readonly<{
   handleClick: () => void
-}) {
+}>) {
   return (
     <button
       onClick={handleClick}

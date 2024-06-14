@@ -6,7 +6,9 @@ import MenuItemStatusSelect from './MenuItemStatusSelect'
 
 //each items in this menu has unique functionality and dependencies, so it was no use in putting them in array and then mapping over it to generate <li>s
 
-export default function MenuItemsList({ menuOpen }: { menuOpen: boolean }) {
+export default function MenuItemsList({
+  menuOpen,
+}: Readonly<{ menuOpen: boolean }>) {
   return (
     <ul
       className={clsx(

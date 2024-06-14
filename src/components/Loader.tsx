@@ -2,7 +2,9 @@ import { useMemo } from 'react'
 import { clsx } from 'clsx'
 import { motion } from 'framer-motion'
 
-export default function Loader({ size }: { size: 'button' | 'page' }) {
+export default function Loader({
+  size,
+}: Readonly<{ size: 'button' | 'page' }>) {
   const pieces = useMemo(() => Array.from({ length: 4 }, (_, i) => i + 1), [])
   const delays = useMemo(
     () => ({

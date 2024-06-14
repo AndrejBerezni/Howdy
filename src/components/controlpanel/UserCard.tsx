@@ -7,10 +7,10 @@ import UserProfilePicture from '../UserProfilePicture'
 export default function UserCard({
   user,
   isFriend,
-}: {
+}: Readonly<{
   user: IUser
   isFriend: boolean
-}) {
+}>) {
   // to check if user is friend, when I implement friends functionality, and display appropriate buttons (add friend or message and remove friend)
 
   return (

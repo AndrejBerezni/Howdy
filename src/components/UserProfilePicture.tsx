@@ -4,10 +4,10 @@ import { Status } from '../compiler/types'
 export default function UserProfilePicture({
   img,
   status,
-}: {
+}: Readonly<{
   img?: string
   status: Status
-}) {
+}>) {
   return (
     <div className="relative lg:w-[60px] w-[50px] lg:h-[60px] h-[50px] lg:min-w-[60px] min-w-[50px] lg:min-h-[60px] min-h-[50px] drop-shadow-md">
       <img

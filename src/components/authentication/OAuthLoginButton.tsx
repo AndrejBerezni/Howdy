@@ -4,11 +4,11 @@ export default function OAuthLoginButton({
   authMethod,
   url,
   icon,
-}: {
+}: Readonly<{
   authMethod: string
   url: string
   icon: React.ReactNode
-}) {
+}>) {
   return (
     <Link
       to={url}

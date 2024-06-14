@@ -4,10 +4,10 @@ import { RiCloseLargeLine } from 'react-icons/ri'
 export default function ToggleMenuButton({
   toggleMenu,
   menuOpen,
-}: {
+}: Readonly<{
   toggleMenu: () => void
   menuOpen: boolean
-}) {
+}>) {
   return (
     <li className="z-20 w-1/5 h-full flex justify-center items-center pt-4 font-bold sm:text-sm text-xs font-montserrat tracking-wider">
       <button
