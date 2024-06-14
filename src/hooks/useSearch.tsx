@@ -4,7 +4,6 @@ import { IUser } from '../compiler/interfaces'
 import {
   setUsersResults,
   addUsersResults,
-  setShowResults,
   setResultsLoading,
   setSearchError,
   setSearchPage,
@@ -21,6 +20,9 @@ export default function useSearch() {
   const headers = generateRequestHeaders()
 
   const debouncedSearch = debounce(async (input: string) => {
+    if (input.trim().length < 2) {
+      return
+    } // don't start search if users only enter whitespaces
     try {
       dispatch(setResultsLoading(true))
       dispatch(setSearchPage(1))
@@ -53,9 +55,6 @@ export default function useSearch() {
       }
 
       dispatch(setUsersResults(results))
-      dispatch(setSearchError(null))
-      dispatch(setShowResults(true))
-      dispatch(setResultsLoading(false))
     } catch (err) {
       dispatch(setResultsLoading(false))
       if (err instanceof Error) {

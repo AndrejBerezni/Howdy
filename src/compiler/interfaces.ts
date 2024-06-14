@@ -5,5 +5,5 @@ export interface IUser {
   nickname: string
   email?: string
   profilePicture?: string
-  status?: 'online' | 'offline' | 'busy'
+  status: 'online' | 'offline' | 'busy'
 }

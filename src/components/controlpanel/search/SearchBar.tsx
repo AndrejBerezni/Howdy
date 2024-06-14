@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect } from 'react'
+import { ChangeEvent } from 'react'
 import { FaSearch } from 'react-icons/fa'
 import { TiDelete } from 'react-icons/ti'
 import { useDispatch, useSelector } from 'react-redux'
@@ -11,15 +11,11 @@ export default function SearchBar() {
   const { debouncedSearch } = useSearch()
   const input = useSelector(getSearchInput)
 
-  //if user manually deletes input, hide results and get back to previous view (chats or friends)
-  useEffect(() => {
-    if (input === '') {
-      dispatch(clearSearch())
-    }
-  }, [input, dispatch])
-
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const searchInput = event.target.value
+    if (searchInput.trim() === '') {
+      dispatch(clearSearch())
+    } //if user manually deletes input, hide results and get back to previous view (chats or friends)
     dispatch(setSearchInput(searchInput))
     if (searchInput.length > 1) {
       debouncedSearch(searchInput)

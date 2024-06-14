@@ -29,13 +29,16 @@ export const searchSlice = createSlice({
       state.searchInput = action.payload
     },
     setUsersResults: (state, action) => {
-      state.usersResults = action.payload
+      //adding condition to fix bug where results were displayed when user was removing input manually - API was called to search for remaining 2 characters and then those results were displayed after user removed all characters
+      if (state.searchInput !== '') {
+        state.usersResults = action.payload
+        state.showResults = true
+        state.searchError = null
+        state.resultsLoading = false
+      }
     },
     addUsersResults: (state, action) => {
       state.usersResults.push(...action.payload)
-    },
-    setShowResults: (state, action) => {
-      state.showResults = action.payload
     },
     setResultsLoading: (state, action) => {
       state.resultsLoading = action.payload
@@ -57,7 +60,6 @@ export const {
   setSearchInput,
   setUsersResults,
   addUsersResults,
-  setShowResults,
   setResultsLoading,
   setSearchError,
   setSearchPage,

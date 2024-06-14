@@ -17,7 +17,7 @@ export default function UserCard({
     <li className="flex items-center pr-4 pb-2 gap-3">
       <UserProfilePicture
         img={user.profilePicture ?? '/profile-img-placeholder.png'}
-        status="online"
+        status={user.status}
       />
       <div className="overflow-x-hidden">
         <p className="font-bold text-nowrap">{user.nickname}</p>
